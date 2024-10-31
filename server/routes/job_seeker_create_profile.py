@@ -107,13 +107,13 @@ def update_job_seeker_profile():
 
     user_id = get_jwt_identity()
     job_seeker = JobSeeker.query.filter_by(user_id=user_id).first()
-    
-    
+
+
     if not job_seeker:
         return jsonify({"message": "Job seeker not found."}), 404
-    
+
     data = request.get_json()
-    
+
     first_name = data.get("first_name")
     last_name = data.get("last_name")
     dob = data.get("dob")
@@ -178,13 +178,13 @@ def get_job_seeker_notifications():
 
     if not job_seeker:
         return jsonify({"message": "Job seeker not found"}), 404
-    
+
     # Get all applications where the job seeker has made a request (job_seeker_status is 1)
     applications = Application.query.filter_by(job_seeker_id=job_seeker.job_seeker_id, job_seeker_status=1).all()
 
     if not applications:
         return jsonify({"message": "No notifications found"}), 404
-    
+
      # Prepare a response including job posting and employer status info, filter out pending/null statuses
     notifications = []
     for app in applications:
@@ -200,7 +200,7 @@ def get_job_seeker_notifications():
                 "created_at": app.created_at.isoformat(),
                 "employer": {
                     "company_name": employer.company_name,
-                    "company_logo": employer.company_logo,
+                    # "company_logo": employer.company_logo,
                     "about_company": employer.about_company,
                     "email": employer.email,
                 }
