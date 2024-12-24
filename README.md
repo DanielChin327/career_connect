@@ -1,4 +1,8 @@
----Before starting venv and front-end---
+Career Connect
+
+Stack: React with Vite, Python Flask, Xxamp (mySQL) for DB
+
+A project designed to help career searchers find and send applications with a click of a button. 
 
 For Front-End:
 
